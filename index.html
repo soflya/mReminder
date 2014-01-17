@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/mreminder.css">
+	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" href="css/scojs.css">
+
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/sco.modal.js"></script>
+
+	<title>mReminder</title>
+
+	<style type="text/css" media"all">
+
+	html, body {height: 100%;}
+	#id{display: none;}
+	#password{display: none;}
+	#topBtnGroup{height: 12%;}
+	.topbtngroup{list-style-type: none; margin: 0; padding: 0; width: 100%;text-align: center;height: auto;height: 100%;}
+	.topbtngroup li{margin: 0px 3px 3px 3px;  float: left; width: 20%;text-align: center; background-color: transparent;border-width: 0px;height: 100%;}
+	.remindergroup{list-style-type: none; margin: 0; padding: 0; width: 100%;text-align: center;height: 100%;}
+	.remindergroup li{margin: 25px 5px 5px 5px;  float: left; width: 23%;text-align: center;border-width: 1px;border-color: #fff;border-style: solid;}
+	
+	#timeLabel
+	{
+		float: left;
+		font-weight: lighter;
+		font-size: 7.0rem;
+		color: #fff;
+		font-family: Segoe UI,Verdana, Geneva, sans-serif;
+		position: relative;
+		top:65%;
+	}
+
+	#dateLabel
+	{
+		float: left;
+		font-size: 4.0rem;
+		font-weight: lighter;
+		color: #fff;
+		font-family: Segoe UI,Verdana, Geneva, sans-serif;
+		position: relative;
+		top:120%;
+		left:10%;
+	}
+
+	#dateControl
+	{
+		float: left;
+		position: relative;
+		bottom: 110%;
+		left: 4%;
+		height: 100%;
+	}
+	
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function($) {
+			setInterval("GetTime()",1000);
+
+			$("#rightContent").mCustomScrollbar();
+			$("#modalReminder").modal();
+			$('.sharePhoto img').bind("click",function(){
+				$("#showPhoto").attr("src",$(this).attr("src"));
+				$('#modalPhoto').modal("show");
+			});
+			//alert($(".remindergroup li")[2].html());
+			$(".remindergroup li").each(function() {
+
+				switch (Math.floor(Math.random()*9)) {
+	                case 0: 
+	                	$(this).addClass("reminderBg1");
+	                	break;
+	                case 1: 
+	                	$(this).addClass("reminderBg2");
+	                	break;
+	                case 2: 
+	                	$(this).addClass("reminderBg3");
+	                	break;
+	                case 3: 
+	                	$(this).addClass("reminderBg4");
+	                	break;
+	                case 4: 
+	                	$(this).addClass("reminderBg5");
+	                	break;
+	                case 5: 
+	                	$(this).addClass("reminderBg6");
+	                	break;
+	                case 6: 
+	                	$(this).addClass("reminderBg7");
+	                	break;
+	                case 7: 
+	                	$(this).addClass("reminderBg8");
+	                	break;
+	                case 8: 
+	                	$(this).addClass("reminderBg9");
+	                	break;
+	                case 9: 
+	                	$(this).addClass("reminderBg10");
+	                	break;
+
+	                default: 
+	                	$(this).addClass("reminderBg1");
+	                	break;
+            	};
+			});
+			
+		});
+
+		function GetTime() {  
+        var mon, day, now, hour, min, ampm, time, str, tz, end, beg, sec;  
+        mon = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",  
+                "Sep", "Oct", "Nov", "Dec");  
+        day = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");  
+        now = new Date();  
+        hour = now.getHours();  
+        min = now.getMinutes();  
+        sec = now.getSeconds();  
+        if (hour < 10) {  
+            hour = "0" + hour;  
+        }  
+        if (min < 10) {  
+            min = "0" + min;  
+        }  
+        if (sec < 10) {  
+            sec = "0" + sec;  
+        } 
+
+		$("#timeLabel").html(hour+ ":" + min);  
+		$("#dateLabel").html(day[now.getDay()]+"  "+mon[now.getMonth()]+"     "+now.getDate()); 
+  
+    }  
+	</script></head>
+<body class="indexBG">
+	<span id="id"></span>
+	<span id="password"></span>
+
+	<div id="topBtnGroup">
+		<div class="pull-right" style="width: 35%;margin-right: 2%;height:100%;">
+			<div class="topbtngroup">
+				<li>
+					<a href="#">
+						<div class="colorLump1">
+
+							<div class="btnText">Reminder</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="colorLump2">
+							<div class="btnText">Share</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="colorLump1">
+							<div class="btnText">Albums</div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div class="colorLump2">
+							<div class="btnText">Calendar</div>
+						</div>
+					</a>
+				</li>
+			</div>
+		</div>
+	</div>
+
+	<div class="timeBanner">
+		<div id="dateControl">
+			<div id="timeLabel"></div>
+			<div id="dateLabel"></div>
+		</div>
+
+		<!-- <div class="pull-right">
+		<div style="padding-top: 15%;">
+			<img src="image/bportrait3.jpg" style="float: left;border-width: 1px;border-color: #fff;border-style: solid;width: 100%;margin-right: 1%;"></div>
+	</div>
+	-->
+</div>
+
+<div class="shareAndreminder">
+
+	<div id="leftContent" style="text-align: center;width: 55%;float: left;margin-left:2%;height:100%;">
+		<div class="remindergroup">
+			<li style="overflow:hidden;">
+				<div style="color: #fff;margin-top: 1%;font-size: 24px;">14:25</div>
+				<div style="color:#fff;padding-bottom: 5px;height: 50%;overflow:hidden;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					And I suggested that before every meeting we bring pictures of our children and our grandchildren, because truly, that is what this work is all about.
+				</div>
+				<p class="text-right" style="padding: 3px;">
+					<span class="glyphicon glyphicon-picture" style="color: #fff;"></span>
+					<span class="glyphicon glyphicon-facetime-video" style="color: #fff;"></span>
+					<span class="glyphicon glyphicon-headphones" style="color: #fff;"></span>
+				</p>
+
+			</li>
+			<li>
+				<div style="color: #fff;margin-top: 1%;font-size: 24px;">14:25</div>
+				<div style="color:#fff;padding-bottom: 5px;height: 50%;overflow:hidden;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					And I suggested that before every meeting we bring pictures of our children and our grandchildren, because truly, that is what this work is all about.
+				</div>
+				<p class="text-right" style="padding: 3px;">
+
+					<span class="glyphicon glyphicon-facetime-video" style="color: #fff;"></span>
+					<span class="glyphicon glyphicon-headphones" style="color: #fff;"></span>
+				</p>
+			</li>
+			<li>
+				<div style="color: #fff;margin-top: 1%;font-size: 24px;">14:25</div>
+				<div style="color:#fff;padding-bottom: 5px;height: 50%;overflow:hidden;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					And I suggested that before every meeting we bring pictures of our children and our grandchildren, because truly, that is what this work is all about.
+				</div>
+				<p class="text-right" style="padding: 3px;">
+					<span class="glyphicon glyphicon-picture" style="color: #fff;"></span>
+					<span class="glyphicon glyphicon-facetime-video" style="color: #fff;"></span>
+					<span class="glyphicon glyphicon-headphones" style="color: #fff;"></span>
+				</p>
+			</li>
+			<li>
+				<div style="color: #fff;margin-top: 1%;font-size: 24px;">14:25</div>
+				<div style="color:#fff;padding-bottom: 5px;height: 50%;overflow:hidden;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					And I suggested that before every meeting we bring pictures of our children and our grandchildren, because truly, that is what this work is all about.
+				</div>
+				<p class="text-right" style="padding: 3px;">
+					<span class="glyphicon glyphicon-picture" style="color: #fff;"></span>
+					<span class="glyphicon glyphicon-facetime-video" style="color: #fff;"></span>
+
+				</p>
+			</li>
+			<li>
+				<div style="color: #fff;margin-top: 1%;font-size: 24px;">14:25</div>
+				<div style="color:#fff;padding-bottom: 5px;height: 50%;overflow:hidden;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					And I suggested that before every meeting we bring pictures of our children and our grandchildren, because truly, that is what this work is all about.
+				</div>
+				<p class="text-right" style="padding: 3px;">
+					<span class="glyphicon glyphicon-picture" style="color: #fff;"></span>
+
+					<span class="glyphicon glyphicon-headphones" style="color: #fff;"></span>
+				</p>
+			</li>
+			<li>
+				<div style="color: #fff;margin-top: 1%;font-size: 24px;">14:25</div>
+				<div style="color:#fff;padding-bottom: 5px;height: 50%;overflow:hidden;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+					And I suggested that before every meeting we bring pictures of our children and our grandchildren, because truly, that is what this work is all about.
+				</div>
+				<p class="text-right" style="padding: 3px;">
+					<span class="glyphicon glyphicon-picture" style="color: #fff;"></span>
+					<span class="glyphicon glyphicon-facetime-video" style="color: #fff;"></span>
+
+				</p>
+			</li>
+		</div>
+	</div>
+
+	<div id="rightContent" style="text-align: center;width: 40%;float:right;margin-right:2%;height: 100%;">
+		<!-- Share Item -->
+		<div class="shareItem">
+			<span style="position: relative;color: #fff;float: right;font-size: 14px;font-weight: lighter;">7-1-14</span>
+			<img src="image/bportrait3.jpg" style="float: left;border-width: 1px;border-color: #fff;border-style: solid;width: 12%;margin-right: 1%;">
+			<p style="color: #fff;font-weight: bold;font-size: 18px;">Name</p>
+			<div style="color: #fff;font-weight: lighter;font-size: 12px;">
+				CS50x is Harvard College's introduction to the intellectual enterprises of computer science 
+						and the art of programming for majors and non-majors alike, with or without prior 
+						programming experience. An entry-level course taught by David J. Malan, CS50x 
+						teaches students how to think algorithmically
+			</div>
+
+			<div style="margin-top: 4%;">
+				<div class="sharePhoto">
+					<div class="col-xs-3">
+						<img src="image/recommended1.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+					<div class="col-xs-3">
+						<img src="image/recommended2.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+					<div class="col-xs-3">
+						<img src="image/recommended3.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+		</div>
+
+		<!-- Share Item -->
+		<div class="shareItem">
+			<span style="position: relative;color: #fff;float: right;font-size: 14px;font-weight: lighter;">7-1-14</span>
+			<img src="image/bportrait3.jpg" style="float: left;border-width: 1px;border-color: #fff;border-style: solid;width: 12%;margin-right: 1%;">
+			<p style="color: #fff;font-weight: bold;font-size: 18px;">Name</p>
+			<div style="color: #fff;font-weight: lighter;font-size: 12px;">
+				CS50x is Harvard College's introduction to the intellectual enterprises of computer science 
+						and the art of programming for majors and non-majors alike, with or without prior 
+						programming experience. An entry-level course taught by David J. Malan, CS50x 
+						teaches students how to think algorithmically
+			</div>
+
+			<div style="margin-top: 4%;">
+				<div class="sharePhoto">
+					<div class="col-xs-3" >
+						<img src="image/recommended4.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+					<div class="col-xs-3">
+						<img src="image/recommended5.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+					<div class="col-xs-3">
+						<img src="image/recommended6.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<!-- Share Item -->
+		<div class="shareItem">
+			<span style="position: relative;color: #fff;float: right;font-size: 14px;font-weight: lighter;">7-1-14</span>
+			<img src="image/bportrait3.jpg" style="float: left;border-width: 1px;border-color: #fff;border-style: solid;width: 12%;margin-right: 1%;">
+			<p style="color: #fff;font-weight: bold;font-size: 18px;">Name</p>
+			<div style="color: #fff;font-weight: lighter;font-size: 12px;">
+				CS50x is Harvard College's introduction to the intellectual enterprises of computer science 
+						and the art of programming for majors and non-majors alike, with or without prior 
+						programming experience. An entry-level course taught by David J. Malan, CS50x 
+						teaches students how to think algorithmically
+			</div>
+
+			<div style="margin-top: 4%;">
+				<div class="sharePhoto">
+					<div class="col-xs-3" >
+						<img src="image/recommended4.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+					<div class="col-xs-3">
+						<img src="image/recommended5.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+					<div class="col-xs-3">
+						<img src="image/bg1.jpg" alt="" class="img-responsive" style="border-width: 1px;border-color: #fff;border-style: solid;"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+	</div>
+</div>
+
+<div class="modal fade" id="modalPhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="overflow:hidden;">
+	<div class="modal-dialog" style="width: 70%;height: 70%;margin-top: 5%;">
+		<img src="image/bg1.jpg" alt="" class="img-responsive" style="float: left;border-radius: 12px;width: 100%;" id="showPhoto"></div>
+</div>
+
+<div class="modal fade" id="modalReminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="overflow:hidden;">
+	<div class="modal-dialog" style="width: 40%;height:60%;margin-top: 5%;background:rgba(255,255,255,.8);border-radius: 12px;">
+		<!-- <div class="pull-left" style="width: 30%;background-color: #000;height: 100%;">1</div>
+		<div class="pull-left" style="width: 70%;background-color: #eee;height: 100%;">2</div> -->
+		<img src="photo/p1.jpg" style="float: left;border-width: 1px;border-color: #fff;border-style: solid;width: 12%;margin-top: 5%;margin-left: 5%;">
+		<div style="float: left;margin-top: 5%;margin-left: 5%;font-size: 3rem;color: #fff;">Mon 22 JULY 07:35 AM</div>
+		<!-- <div style="height: 10%;background-color: #008B00;width: 70%;float: left;margin-top: 5%;margin-left: 2%;"></div> -->
+		
+	</div>
+</div>
+
+
+</body>
+</html>
